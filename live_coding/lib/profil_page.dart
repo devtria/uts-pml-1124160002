@@ -69,30 +69,70 @@ class ProfilPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [
                       Text(
-                        'Informasi Akademik',
+                        'Informasi Kontak',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Divider(),
-                      ListTile(
-                        contentPadding: EdgeInsets.zero,
-                        leading: Icon(Icons.school, color: Colors.deepOrange),
-                        title: Text('Program Studi'),
-                        subtitle: Text('S1 Teknik Informatika'),
+                      InfoTile(
+                        icon: Icons.email,
+                        label: 'Email',
+                        value: 'satria.nurulloh.creative@gmail.com',
                       ),
-                      ListTile(
-                        contentPadding: EdgeInsets.zero,
-                        leading: Icon(Icons.email, color: Colors.deepOrange),
-                        title: Text('Email'),
-                        subtitle: Text('satria.nurulloh.creative@gmail.com'),
+                      InfoTile(
+                        icon: Icons.phone,
+                        label: 'Nomor HP',
+                        value: '088976064734,
                       ),
-                      ListTile(
-                        contentPadding: EdgeInsets.zero,
-                        leading: Icon(Icons.location_on, color: Colors.deepOrange),
-                        title: Text('Kampus'),
-                        subtitle: Text('HARVARD UNIVERSITY :)'),
+                      InfoTile(
+                        icon: Icons.class_,
+                        label: 'Kelas',
+                        value: 'TI-24 SE-2',
+                      ),
+                      InfoTile(
+                        icon: Icons.code,
+                        label: 'Akun GitHub',
+                        value: 'github.com/devtria',
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              sectionSpacing,
+              Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text(
+                        'Keahlian & Hobi',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Divider(),
+                      InfoTile(
+                        icon: Icons.phone_android,
+                        label: 'Keahlian Utama',
+                        value: 'Laravel, Node.js, Next.js, MySQL, MongoDB',
+                      ),
+                      InfoTile(
+                        icon: Icons.web,
+                        label: 'Keahlian Lain',
+                        value: 'Web Development & AI Engineer',
+                      ),
+                      InfoTile(
+                        icon: Icons.sports_esports,
+                        label: 'Hobi',
+                        value: 'Coding & Gaming',
                       ),
                     ],
                   ),
@@ -115,6 +155,37 @@ class ProfilPage extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Terima kasih telah melihat profil saya')),
+          );
+        },
+        child: const Icon(Icons.favorite),
+      ),
+    );
+  }
+}
+
+class InfoTile extends StatelessWidget {
+  final IconData icon;
+  finalString label;
+  final String value;
+
+  const InfoTile({
+    super.key,
+    required this.icon,
+    required this.label,
+    required this.value,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: Icon(icon, color: Colors.deepOrange),
+      title: Text(label),
+      subtitle: Text(value),
     );
   }
 }
