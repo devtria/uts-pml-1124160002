@@ -15,7 +15,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   ThemeMode _themeMode = ThemeMode.system;
 
-  void toggleTheme(bool isDark) {
+  void _toggleTheme(bool isDark) {
     setState(() {
       _themeMode = isDark ? ThemeMode.dark : ThemeMode.light;
     });
@@ -28,7 +28,10 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.blue,
+          brightness: Brightness.light,
+        ),
       ),
       darkTheme: ThemeData(
         useMaterial3: true,
@@ -38,7 +41,10 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       themeMode: _themeMode,
-      home: LoginPage(onThemeChanged: toggleTheme, currentThemeMode: _themeMode),
+      home: LoginPage(
+        onThemeChanged: _toggleTheme,
+        currentThemeMode: _themeMode,
+      ),
     );
   }
 }
