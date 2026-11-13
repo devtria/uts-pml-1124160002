@@ -22,28 +22,39 @@ class _LoginPageState extends State<LoginPage> {
   bool _isLoading = false;
 
   void _login() async {
-    // Validasi form
     if (_formKey.currentState!.validate()) {
-      setState(() {
-        _isLoading = true;
-      });
+      String inputEmail = _emailController.text.trim();
+      String inputPassword = _passwordController.text;
 
-      await Future.delayed(const Duration(seconds: 2));
+      if (inputEmail == 'satria.nurulloh.creative@gmail.com' && inputPassword == 'Satria123!') {
+        setState(() {
+          _isLoading = true;
+        });
 
-      setState(() {
-        _isLoading = false;
-      });
+        await Future.delayed(const Duration(seconds: 2));
 
-      if (!mounted) return;
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ProfilePage(
-            onThemeChanged: widget.onThemeChanged,
-            currentThemeMode: widget.currentThemeMode,
+        setState(() {
+          _isLoading = false;
+        });
+
+        if (!mounted) return;
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProfilePage(
+              onThemeChanged: widget.onThemeChanged,
+              currentThemeMode: widget.currentThemeMode,
+            ),
           ),
-        ),
-      );
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Login Gagal: Email atau Password salah!'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
     }
   }
 
@@ -74,7 +85,6 @@ class _LoginPageState extends State<LoginPage> {
                 const Text('Silakan login untuk melihat profil'),
                 const SizedBox(height: 32),
 
-                // TextFormField Email dengan Validator
                 TextFormField(
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
@@ -114,7 +124,6 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
                 const SizedBox(height: 24),
-
                 SizedBox(
                   width: double.infinity,
                   height: 50,
